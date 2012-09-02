@@ -1,16 +1,14 @@
-==Camel CXF Rest Example with JSON==
+Camel CXF Rest Example with JSON
 -----------------------------------------
 
 Thie example demonstrates the use of apache camel to invoke a CXFRS service which returns JSON data
 The Client consumes this JSON data and then stores it into a file in json format
 
 About The Example
-
 	The Example contains 3 modules
 		a) CXFRS Service Module 
 		b) CXFRS Commmon Module
 		c) CXFRS Client Module
-		
 	
 	a) CXFRS Service Module
 		
@@ -63,7 +61,7 @@ About The Example
 	    	c) marshals the correct response to POJO
 	    	d) save the pojo to File.
 
-b) Setting up the Example
+Setting up the Example
 
 	 i)   check out the example
 

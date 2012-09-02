@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+         http://cxf.apache.org/bindings/soap 
+		http://cxf.apache.org/schemas/configuration/soap.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util.xsd
+        http://cxf.apache.org/transports/http/configuration
+        http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+
+	
+   <!-- 
+   	CXF-RS CLIENT:
+   	FOR INVOKING A WEB ADDRESS AND FOR GETTING THE RESULT
+    -->
+	<jaxrs:client id="restClient" address="http://localhost:8080/cxf-rest/services"  
+		serviceClass="org.apache.camel.example.cxfrs.client.CountryResource" >
+		<jaxrs:features>
+			<ref bean="loggingFeature" />
+		</jaxrs:features>
+        <jaxrs:headers>
+             <entry key="Charset" value="UTF-8"/>
+             <entry key="Accept" value="application/json"/>
+        </jaxrs:headers>
+       
+        <!--
+        	Data Provider 
+         -->
+        <jaxrs:providers>
+			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:client>
+	
+	<bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature" />								
+
+</beans>

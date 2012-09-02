@@ -1,0 +1,1 @@
+{"countryCode":"GE","name":"Germany","capital":"Berlin","continent":"Europe"}

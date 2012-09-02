@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.10.1.xsd">
+
+
+	<!-- Import file contaning the CXF RS client -->
+	<import resource="cxf-services.xml" />
+
+	<camelContext trace="false"
+		xmlns="http://camel.apache.org/schema/spring">
+
+		<!-- Marshalling Unmarshalling JSON Data Formats -->
+		<camel:dataFormats>
+			<camel:json id="countriesJSON" library="Jackson"
+				prettyPrint="true" unmarshalTypeName="org.apache.camel.example.cxfrs.pojo.CountryResponse" />
+			<camel:json id="countryJSON" library="Jackson"
+				prettyPrint="true" unmarshalTypeName="org.apache.camel.example.cxfrs.pojo.Country" />
+		</camel:dataFormats>
+
+		<camel:route id="countries-fetch-route" autoStartup="true">
+			<camel:from uri="timer://countryTimer?repeatCount=1" />
+			<camel:onException useOriginalMessage="false">
+				<camel:exception>java.lang.Exception</camel:exception>
+				<camel:handled>
+					<camel:constant>false</camel:constant>
+				</camel:handled>
+				<camel:log	message="Error Occoured while fetching Countries: Got ${body} as message" loggingLevel="ERROR" />
+			</camel:onException>
+			<camel:setBody>
+				<camel:simple resultType="java.lang.String">IN,AU,CA,CH,GE</camel:simple>
+			</camel:setBody>
+			<camel:split streaming="true" parallelProcessing="true">
+				<camel:tokenize token="," />
+				<camel:bean ref="restClient" method="getCountryInfo('${body}')" />
+				<camel:unmarshal ref="countriesJSON" />
+				<camel:choice>
+					<camel:when>
+						<camel:simple>${body.message} == 'ok'</camel:simple>
+						<camel:split streaming="true" parallelProcessing="true">
+							<camel:simple>${body.countries.values}</camel:simple>
+							<camel:setHeader headerName="name">
+								<camel:simple>${body.name}</camel:simple>
+							</camel:setHeader>
+							<camel:marshal ref="countryJSON" />
+							<camel:to uri="file:data?fileName=${header.name}.txt&amp;fileExist=Move&amp;moveExisting=${file:name}.${date:now:yyyyMMdd-HHmmss}.txt"></camel:to>
+						</camel:split>
+					</camel:when>
+					<camel:otherwise>
+						<camel:log message="Error Occoured while fetching Countries: Got ${body}" loggingLevel="ERROR" />
+					</camel:otherwise>
+				</camel:choice>
+			</camel:split>
+		</camel:route>
+
+	</camelContext>
+
+</beans>
+
+

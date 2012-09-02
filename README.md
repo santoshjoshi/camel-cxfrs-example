@@ -4,80 +4,85 @@ Camel CXF Rest Example with JSON
 Thie example demonstrates the use of apache camel to invoke a CXFRS service which returns JSON data
 The Client consumes this JSON data and then stores it into a file in json format
 
-About The Example
+##### About The Example
 
-	The Example contains 3 modules
-		a) CXFRS Service Module 
-		b) CXFRS Commmon Module
-		c) CXFRS Client Module
+The Example contains 3 modules
+
+1. CXFRS Service Module  
+2. CXFRS Commmon Module
+3. CXFRS Client Module  
+
+
+            
+            
+#####CXFRS Service Module  
+ 		
+This exposes a CXF REST service where a client hits the  
+_http://localhost:8080/cxf-rest/services/country/{countrycode}_  
+url with some country code to get country details in JSON Format
+		
+The CountryService creates a rest interface as shown below.  
 	
-	a) CXFRS Service Module
+     public interface CountryService {  
+     
+       @GET  			
+       @Path(value = "/country/{countryCode}")
+       @Produces(MediaType.APPLICATION_JSON)  
+       public Response getCountry(@PathParam("countryCode") String countryCode);
+     
+    }  
+
+#####CXFRS Commmon Module
 		
-		This exposes a CXF REST service where a client hits the 
-			http://localhost:8080/cxf-rest/services/country/{countrycode}
-		url with some country code to get country details in JSON Format
+This module contains POJOs shared by both the client and service.  
+
+1. Country.java  
+2. CountryResponse.java 
 		
-		The CountryService creates a rest interface as shown below.
-		
-		public interface CountryService {
-	
-			@GET
-			@Path(value = "/country/{countryCode}")
-			@Produces(MediaType.APPLICATION_JSON)
-			public Response getCountry(@PathParam("countryCode") String countryCode);
-	
-		}
-		
-	b) CXFRS Commmon Module
-		
-		This module contains a POJO shared by both the client and service.
-		This contains 2 POJOs
-		i)  Country.java
-		ii) CountryResponse.java 
-		
-		These are shared between both service for populating and client for consumption
+These are shared between both service for populating and client for consumption  
+
 			
-	c) CXFRS Client Module
+#####CXFRS Client Module
 		
-		This module calls a Rest service hosted at some address with a country code like IN, CH GE etc to get 
-		country information in JSON format, the json obtained is then marshelled to a country POJO and then
-		save to a text file in some folder
+This module calls a Rest service hosted at some address with a country code like IN, CH GE etc to get country information in JSON format, the json obtained is then marshelled to a country POJO and then save to a text file in some folder
 		
-		This module contains 2 java class
-		i) Main.java
-		ii) CountryResource.java
+This module contains 2 java class  
+
+1. Main.java
+2. CountryResource.java
 			
-		CountyResource.java exposes an interface to the client 	for communication with the CXF REST Service defined by 
-		CXFRS service Module.
+*CountyResource.java* exposes an interface to the client 	for communication with the CXF REST Service defined by CXFRS service Module.
 		
-		Main.java is basically for executing application.
+*Main.java* is basically for executing application.
 		
-	    A CXF Rest client is created that hits the service hosted at 
-	   		http://localhost:8080/cxf-rest/services 
-	    url to fetch country details corrsponding to a country code.
+A CXF Rest client is created that hits the service hosted at  
+_http://localhost:8080/cxf-rest/services_  
+url to fetch country details corrsponding to a country code.
 	    
-	    A Camel route is written that
-	    	a) call the cxf service for a list of countries codes
-	    	b) unmarshals the json obtained to pojo and idenifies whether the response is correct
-	    	c) marshals the correct response to POJO
-	    	d) save the pojo to File.
+A Camel route is written that  
 
-  Setting up the Example
+1. call the cxf service for a list of countries codes 
+2. unmarshals the json obtained to pojo and idenifies whether the response is correct
+3. marshals the correct response to POJO
+4. save the pojo to File.
 
-	  i)   check out the example
+#####Setting up the Example
 
-     ii)  Go to cxf client module and adjust
-		  <jaxrs:client id="restClient" address="http://localhost:8080/cxf-rest/services" in cxf-services.xml
+1. check out the example
+
+2. Go to *cxf* client module and adjust  
+_< jaxrs:client id="restClient" address="http://localhost:8080/cxf-rest/services"_   
+in _cxf-services.xml_
 		
-		  the service url to url where you want to deploy you rest application		  
-	 iii)   execute 
+  the service url to url where you want to deploy you rest application		  
+3.   execute 
 			mvn clean install
 			
-	 iv)  deploy the cxf-rest war available in cxf-rest-service module to  your favrioute web container
-	  v)  hit 
-	 	  http://localhost:8080/cxf-rest/services/country/in in your favrouite browser.
-		  
+4.  deploy the cxf-rest war available in cxf-rest-service module to  your favrioute web container
+5.  Hit 
+_http://localhost:8080/cxf-rest/services/country/in_  
+in your favrioute browser.
 		  This will tell whether web context is up or not.
 		  
-	vi)   execute mvn exec:exec from client module
+6.  execute mvn exec:exec from client module
 			

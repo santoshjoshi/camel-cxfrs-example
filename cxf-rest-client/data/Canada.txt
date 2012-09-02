@@ -1,1 +1,0 @@
-{"countryCode":"CA","name":"Canada","capital":"Ottawa","continent":"North America"}

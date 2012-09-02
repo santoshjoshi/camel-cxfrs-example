@@ -5,6 +5,7 @@ Thie example demonstrates the use of apache camel to invoke a CXFRS service whic
 The Client consumes this JSON data and then stores it into a file in json format
 
 About The Example
+
 	The Example contains 3 modules
 		a) CXFRS Service Module 
 		b) CXFRS Commmon Module
@@ -61,13 +62,13 @@ About The Example
 	    	c) marshals the correct response to POJO
 	    	d) save the pojo to File.
 
-Setting up the Example
+  Setting up the Example
 
-	 i)   check out the example
+	  i)   check out the example
 
      ii)  Go to cxf client module and adjust
-		  <jaxrs:client id="restClient" address="http://localhost:8080/cxf-rest/services" 
-			
+		  <jaxrs:client id="restClient" address="http://localhost:8080/cxf-rest/services" in cxf-services.xml
+		
 		  the service url to url where you want to deploy you rest application		  
 	 iii)   execute 
 			mvn clean install

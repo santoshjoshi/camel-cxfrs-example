@@ -7,6 +7,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * 
+ * REST Interface:
+ * Used by client to call REST Service
+ *
+ */
 public interface CountryResource {
 
 

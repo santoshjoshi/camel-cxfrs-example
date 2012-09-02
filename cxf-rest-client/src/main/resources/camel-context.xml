@@ -5,18 +5,16 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.10.1.xsd">
 
 
-	<!-- Import file contaning the CXF RS client -->
+	<!-- Import file containing the CXF RS client -->
 	<import resource="cxf-services.xml" />
 
 	<camelContext trace="false"
 		xmlns="http://camel.apache.org/schema/spring">
 
-		<!-- Marshalling Unmarshalling JSON Data Formats -->
+		<!-- Marshalling and Unmarshalling JSON Data Formats -->
 		<camel:dataFormats>
-			<camel:json id="countriesJSON" library="Jackson"
-				prettyPrint="true" unmarshalTypeName="org.apache.camel.example.cxfrs.pojo.CountryResponse" />
-			<camel:json id="countryJSON" library="Jackson"
-				prettyPrint="true" unmarshalTypeName="org.apache.camel.example.cxfrs.pojo.Country" />
+			<camel:json id="countriesJSON" library="Jackson" prettyPrint="true" unmarshalTypeName="org.apache.camel.example.cxfrs.pojo.CountryResponse" />
+			<camel:json id="countryJSON" library="Jackson"   prettyPrint="true" unmarshalTypeName="org.apache.camel.example.cxfrs.pojo.Country" />
 		</camel:dataFormats>
 
 		<camel:route id="countries-fetch-route" autoStartup="true">

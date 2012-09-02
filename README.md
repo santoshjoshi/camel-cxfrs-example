@@ -1,7 +1,7 @@
 Camel CXF Rest Example with JSON
 -----------------------------------------
 
-Thie example demonstrates the use of apache camel to invoke a CXFRS service which returns JSON data
+Thie example demonstrates the use of apache camel to invoke a CXFRS service which returns JSON data.    
 The Client consumes this JSON data and then stores it into a file in json format
 
 ##### About The Example
@@ -34,19 +34,19 @@ The CountryService creates a rest interface as shown below.
 
 #####CXFRS Commmon Module
 		
-This module contains POJOs shared by both the client and service.  
+This module contains POJOs that are shared by both client and service module.  
 
 1. Country.java  
 2. CountryResponse.java 
 		
-These are shared between both service for populating and client for consumption  
+service module populates it and client for consumes it.  
 
 			
 #####CXFRS Client Module
 		
-This module calls a Rest service hosted at some address with a country code like IN, CH GE etc to get country information in JSON format, the json obtained is then marshelled to a country POJO and then save to a text file in some folder
+This module calls a REST service hosted by service module with a country code like IN, CH, GE etc to get country information in JSON format, the JSON obtained is then marshalled to a country POJO and then save to a text file.
 		
-This module contains 2 java class  
+This module contains below java class  
 
 1. Main.java
 2. CountryResource.java
@@ -55,13 +55,13 @@ This module contains 2 java class
 		
 *Main.java* is basically for executing application.
 		
-A CXF Rest client is created that hits the service hosted at  
+A CXF Rest client has been created that hits the service hosted at  
 _http://localhost:8080/cxf-rest/services_  
-url to fetch country details corrsponding to a country code.
+to fetch country details corrsponding to the passed country code.
 	    
-A Camel route is written that  
+A Camel route is written that executes as below
 
-1. call the cxf service for a list of countries codes 
+1. Calls the cxf service by passing country code and obtains a country in Json format 
 2. unmarshals the json obtained to pojo and idenifies whether the response is correct
 3. marshals the correct response to POJO
 4. save the pojo to File.

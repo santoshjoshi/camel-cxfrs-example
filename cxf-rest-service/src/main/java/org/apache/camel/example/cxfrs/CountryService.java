@@ -7,6 +7,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * 
+ * Exposes a CXF service
+ * 
+ */
 public interface CountryService {
 
 	@GET

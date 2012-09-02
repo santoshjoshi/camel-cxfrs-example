@@ -1,6 +1,10 @@
 package org.apache.camel.example.cxfrs.pojo;
 
 
+/*
+ * A Simple POJO 
+ * 
+ */
 public class Country {
 
 	private String countryCode;

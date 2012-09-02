@@ -9,7 +9,7 @@ The Client consumes this JSON data and then stores it into a file in json format
 The Example contains 3 modules
 
 1. CXFRS Service Module  
-2. CXFRS Commmon Module
+2. CXFRS Common Module
 3. CXFRS Client Module  
 
 
@@ -32,7 +32,7 @@ The CountryService creates a rest interface as shown below.
      
     }  
 
-#####CXFRS Commmon Module
+#####CXFRS Common Module
 		
 This module contains POJOs that are shared by both client and service module.  
 
@@ -57,14 +57,14 @@ This module contains below java class
 		
 A CXF Rest client has been created that hits the service hosted at  
 _http://localhost:8080/cxf-rest/services_  
-to fetch country details corrsponding to the passed country code.
+to fetch country details corrosponding to the passed country code.
 	    
 A Camel route is written that executes as below
 
-1. Calls the cxf service by passing country code and obtains a country in Json format 
-2. unmarshals the json obtained to pojo and idenifies whether the response is correct
+1. Calls the cxf service by passing country code and obtains a country in JSON format 
+2. unmarshals the JSON obtained to POJO and identifies whether the response is correct
 3. marshals the correct response to POJO
-4. save the pojo to File.
+4. saves the pojo to File.
 
 #####Setting up the Example
 

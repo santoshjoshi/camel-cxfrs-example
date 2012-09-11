@@ -6,9 +6,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
-         http://cxf.apache.org/bindings/soap 
+        http://cxf.apache.org/bindings/soap 
 		http://cxf.apache.org/schemas/configuration/soap.xsd
 		http://www.springframework.org/schema/util 
 		http://www.springframework.org/schema/util/spring-util.xsd
@@ -34,7 +34,7 @@
         	Data Provider 
          -->
         <jaxrs:providers>
-			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+			<bean id="jsonDataProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
 		</jaxrs:providers>
 	</jaxrs:client>
 	

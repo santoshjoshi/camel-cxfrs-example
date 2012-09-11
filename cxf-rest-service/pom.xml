@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
  
   <parent>
-    <artifactId>examples</artifactId>
+   <artifactId>camel-cxfrs-example</artifactId>
     <groupId>org.apache.camel</groupId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>

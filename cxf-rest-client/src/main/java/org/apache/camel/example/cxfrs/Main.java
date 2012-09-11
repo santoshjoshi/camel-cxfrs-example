@@ -11,7 +11,7 @@ public class Main{
 	
 	public static void main(String[] args) throws Exception {
 		
-		new ClassPathXmlApplicationContext("classpath:camel-Context.xml");
+		new ClassPathXmlApplicationContext("classpath:camel-context.xml");
 		Thread.currentThread().sleep(1000000l);
 	}
 }

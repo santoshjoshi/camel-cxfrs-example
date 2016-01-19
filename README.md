@@ -1,6 +1,10 @@
 Camel CXF Rest Example with JSON
 -----------------------------------------
 
+#####Version Used:
+1. camel : 2.16.0
+2. CXF Version  3.1.3
+
 Thie example demonstrates the use of apache camel to invoke a CXFRS service which returns JSON data.    
 The Client consumes this JSON data and then stores it into a file in json format
 
@@ -13,8 +17,6 @@ The Example contains 3 modules
 3. CXFRS Client Module  
 
 
-            
-            
 #####CXFRS Service Module  
  		
 This exposes a CXF REST service where a client hits the  
@@ -85,4 +87,4 @@ in your favrioute browser.
 		  This will tell whether web context is up or not.
 		  
 6.  execute mvn exec:exec from client module
-			
+		

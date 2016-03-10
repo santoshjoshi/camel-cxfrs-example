@@ -20,7 +20,7 @@
 		<junit.version>4.12</junit.version>
 		<camel.version>2.16.0</camel.version>
 		<jackson.version>1.9.13</jackson.version>
-                <commonslang.version>3.4</commonslang.version>
+        <commonslang.version>3.4</commonslang.version>
 	</properties>
 
 	<dependencies>
@@ -62,11 +62,17 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>${3.1.3}</version>
+			<version>${cxf.version}</version>
 			<type>jar</type>
 		</dependency>
+		
+		<dependency>
+  <groupId>org.apache.cxf</groupId>
+  <artifactId>cxf-rt-rs-client</artifactId>
+  <version>${cxf.version}</version>
+</dependency>
 
-		<!-- Log4j Dependencies -->
+ 		<!-- Log4j Dependencies -->
                 <dependency>
                     <groupId>org.apache.logging.log4j</groupId>
                     <artifactId>log4j-api</artifactId>

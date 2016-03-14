@@ -34,14 +34,14 @@ public class CountryServiceImpl implements CountryService {
 
 	public Response getCountry(String countryCode) {
 
-		Response response = null;
+		Response response;
 		Map<String, Country>  countries =  new HashMap<String, Country>();
 		CountryResponse countryResponse = new CountryResponse();
 		countryResponse.setCountries(countries);
 
 		if(StringUtils.isEmpty(countryCode)){
 			countryResponse.setMessage("Country Code Not provided!") ;
-			response = Response.ok(countryResponse).status(Status.BAD_REQUEST).build();
+			Response.ok(countryResponse).status(Status.BAD_REQUEST).build();
 		}
 
 		Country country = countryMap.get(countryCode.toUpperCase());
@@ -63,8 +63,6 @@ public class CountryServiceImpl implements CountryService {
 		CountryResponse countryResponse = new CountryResponse();
 		countryResponse.setCountries(countryMap);
 		countryResponse.setMessage("ok");
-		Response response = Response.ok(countryResponse).status(Status.OK).build();
-
-		return response;
+		return Response.ok(countryResponse).status(Status.OK).build();
 	}
 }

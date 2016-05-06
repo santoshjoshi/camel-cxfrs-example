@@ -28,7 +28,7 @@
 		</init-param>
 		<init-param>
 		    <param-name>jaxrs.providers</param-name>
-		    <param-value>org.apache.cxf.jaxrs.provider.SONProvider</param-value> 
+		    <param-value>org.apache.cxf.jaxrs.provider.JSONProvider</param-value> 
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

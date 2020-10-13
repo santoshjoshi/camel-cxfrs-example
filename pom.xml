@@ -17,7 +17,7 @@
 		<slf4j.version>1.7.12</slf4j.version>
 		<spring.version>4.2.1.RELEASE</spring.version>
 		<log4j.version>2.4</log4j.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<camel.version>2.16.5</camel.version>
 		<jackson.version>1.9.13</jackson.version>
         <commonslang.version>3.4</commonslang.version>
